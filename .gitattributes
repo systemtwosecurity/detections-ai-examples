@@ -1,0 +1,6 @@
+# Keep the language bar from labelling the repo by its first example's language.
+*.bicep linguist-detectable=false
+*.ps1   linguist-detectable=false
+
+# Built from main.bicep with `az bicep build`; collapse it in diffs.
+**/azuredeploy.json linguist-generated=true
