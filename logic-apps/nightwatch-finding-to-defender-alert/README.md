@@ -112,6 +112,25 @@ permission, its later runs can still get 403 from Graph until that token expires
 
 A test event raises a real Defender alert. Resolve it when you are done.
 
+## Webhook signatures
+
+detections.ai signs every webhook delivery with the Standard Webhooks headers `webhook-id`, `webhook-timestamp` and
+`webhook-signature`. This Logic App does not check them. Logic Apps has no built-in way to verify an HMAC signature, and
+its workflow expressions have no HMAC function. The subscribe response returns a signing secret once, and the Logic App
+does not keep it.
+
+The callback URL is what protects the Logic App. Logic Apps puts a shared access signature in it (the `sig` query
+parameter), and anyone who has the full URL can start a run, which raises a Defender alert with whatever the request
+body says. detections.ai stores the URL but never returns it in an API response.
+
+- Keep the callback URL secret. Do not paste it into tickets, chat or logs.
+- If the URL leaks, delete the Logic App and deploy it again. The new Logic App gets a new callback URL, and deleting the
+  old one unsubscribes its webhook.
+- To verify signatures, put your own receiver in front of the Logic App, such as an Azure Function. Subscribe the
+  receiver's URL, keep the signing secret from the subscribe response, check each delivery with a Standard Webhooks
+  library, and forward the verified body to the Logic App. The [API guide](https://detections.ai/api/v1-beta/docs) shows
+  how to verify a signature.
+
 ## How a finding maps to the alert
 
 | Alert field          | From the finding                                                              |
