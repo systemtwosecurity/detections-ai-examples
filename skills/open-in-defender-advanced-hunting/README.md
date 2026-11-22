@@ -25,13 +25,14 @@ pbpaste | python3 open_in_advanced_hunting.py --open
 python3 open_in_advanced_hunting.py --query 'DeviceProcessEvents | take 10'
 ```
 
-The script prints the link. It opens Advanced Hunting with the time range set to **Last 24 hours**.
+The script prints the link. If the query filters on time (for example `where Timestamp > ago(7d)`), Advanced Hunting
+uses the query's lookback. Otherwise it searches the **last 24 hours**, the time range the link sets.
 
-| Option         | What it does                                                                                     |
-| -------------- | ------------------------------------------------------------------------------------------------ |
-| `--open`       | Opens the link in your default browser as well as printing it.                                   |
-| `--time-range` | Sets the console's `timeRangeId`. The default, `day`, is Last 24 hours. Other values are untested. |
-| `--tenant`     | Adds `tid=<tenant ID>`. Untested. Without it, the console opens in the tenant you used last.     |
+| Option         | What it does                                                                                               |
+| -------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--open`       | Opens the link in your default browser as well as printing it.                                             |
+| `--time-range` | Sets `timeRangeId` for a query with no time filter. The default, `day`, is Last 24 hours. Others untested. |
+| `--tenant`     | Adds `tid=<tenant ID>`. Untested. Without it, the console opens in the tenant you used last.               |
 
 If the link would be longer than 8,000 characters, the script prints no link and exits with code 2, because browsers and
 proxies can cut off longer URLs. Paste that query into the console yourself.

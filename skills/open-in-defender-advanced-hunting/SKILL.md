@@ -12,7 +12,14 @@ they run it. They then type a summary of the results back to you.
 
 1. Get the query text. For a detections.ai detection, read its rule body with `get_detections`. Use Defender Advanced
    Hunting KQL only: if the rule is Sigma or another language, translate it to KQL first and show the translation.
-2. Write the KQL exactly as it should run to `query.kql`. Don't add a time filter: the link sets the time range.
+2. Write the KQL exactly as it should run to `query.kql`. Defender picks the lookback like this:
+   - The query filters on time (for example `where Timestamp > ago(7d)`): Defender uses the query's lookback and ignores
+     the link's time range.
+   - The query has no time filter: Defender searches the last 24 hours, the time range the link sets.
+
+   Keep a lookback the query already has. If the user wants a different window, change or add the filter in the query
+   (`Timestamp` on Defender tables, `TimeGenerated` on Sentinel tables) rather than passing `--time-range`.
+
 3. Build the link with `open_in_advanced_hunting.py` from this skill's base directory. Never build the link by hand:
    the encoding is undocumented and easy to get wrong.
 
@@ -23,7 +30,8 @@ they run it. They then type a summary of the results back to you.
    - Add `--open` if the user asks you to open it.
    - Don't pass `--tenant` or `--time-range` unless the user asks: both are untested.
 
-4. Give the user the link the script printed, unchanged, plus one line saying what the query looks for.
+4. Give the user the link the script printed, unchanged, plus one line saying what the query looks for and the lookback
+   it searches.
 5. If the script exits with code 2, the link would be too long. Say so, and give the KQL in a code block to paste into
    Advanced Hunting.
 6. If you can't run commands, give the user the contents of `query.kql` and the command from step 3 to run themselves.

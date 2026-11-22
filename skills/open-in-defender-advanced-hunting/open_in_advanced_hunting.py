@@ -64,7 +64,10 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--time-range",
         default="day",
-        help="the console's timeRangeId (default: day, which is 'Last 24 hours'; other values untested)",
+        help=(
+            "the console's timeRangeId, used only when the query has no time filter"
+            " (default: day, which is 'Last 24 hours'; other values untested)"
+        ),
     )
     parser.add_argument(
         "--tenant",
