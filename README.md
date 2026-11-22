@@ -8,6 +8,11 @@ Working examples that connect detections.ai to other tools through the
 - [Nightwatch finding to Microsoft Defender alert](logic-apps/nightwatch-finding-to-defender-alert/): raises a Microsoft
   Defender XDR alert for each new Nightwatch finding.
 
+## Microsoft Defender
+
+- [Open a detection in Defender Advanced Hunting](defender/open-in-advanced-hunting/): turns a KQL query into a link that
+  loads it into the Advanced Hunting editor, so you can run detections.ai queries against your own data.
+
 ## License
 
 [MIT](LICENSE)
