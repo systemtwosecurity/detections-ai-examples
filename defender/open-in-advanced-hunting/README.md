@@ -42,7 +42,9 @@ proxies can cut off longer URLs. Paste that query into the console yourself.
 2. Ask for the detection's KQL (`get_detections`). A Sigma rule isn't a hunting query, so ask the assistant to translate it
    to Defender KQL first.
 3. Save the query to `query.kql` and run `python3 open_in_advanced_hunting.py query.kql --open`.
-4. Run the query in Defender. Tell your assistant what it returned: too many results, none, or the wrong ones.
+4. Run the query in Defender, then type a summary of the results into the chat: the hit count, the top values of the
+   columns that identify who or what fired it, and which rows look benign. Your assistant can't see Defender, so it works
+   only from what you write.
 5. Ask the assistant to tune the detection (`customize_detection`), then open the tuned query the same way.
 
 ## How the link works
