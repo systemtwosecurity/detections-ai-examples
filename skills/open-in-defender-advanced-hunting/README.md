@@ -43,10 +43,10 @@ of by hand. Copy the folder into your skills directory:
 
 ```bash
 # Claude Code (all projects)
-cp -r defender/open-in-advanced-hunting ~/.claude/skills/
+cp -r skills/open-in-defender-advanced-hunting ~/.claude/skills/
 
 # Claude Code (one project)
-cp -r defender/open-in-advanced-hunting <project>/.claude/skills/
+cp -r skills/open-in-defender-advanced-hunting <project>/.claude/skills/
 ```
 
 Other assistants that read `SKILL.md` files, such as Codex, take the same folder in their own skills directory. Then

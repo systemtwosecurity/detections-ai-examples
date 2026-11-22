@@ -1,5 +1,5 @@
 ---
-name: open-in-advanced-hunting
+name: open-in-defender-advanced-hunting
 description: Build a Microsoft Defender Advanced Hunting link that loads a KQL query into the console editor, ready to run. Use when the user asks for a link to run a detection, rule or query in Defender, asks to open a query in Defender or Advanced Hunting, or wants to try a detections.ai detection against their own Defender or Sentinel data.
 ---
 
