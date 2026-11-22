@@ -36,6 +36,22 @@ The script prints the link. It opens Advanced Hunting with the time range set to
 If the link would be longer than 8,000 characters, the script prints no link and exits with code 2, because browsers and
 proxies can cut off longer URLs. Paste that query into the console yourself.
 
+## Install it as an agent skill
+
+This folder is also an agent skill: [SKILL.md](SKILL.md) tells your assistant to build links with this script instead
+of by hand. Copy the folder into your skills directory:
+
+```bash
+# Claude Code (all projects)
+cp -r defender/open-in-advanced-hunting ~/.claude/skills/
+
+# Claude Code (one project)
+cp -r defender/open-in-advanced-hunting <project>/.claude/skills/
+```
+
+Other assistants that read `SKILL.md` files, such as Codex, take the same folder in their own skills directory. Then
+ask for "a link to run this detection in Defender".
+
 ## With the detections.ai MCP server
 
 1. Ask your assistant to find a hunt package (`search_hunt_packages`) and pick one of its detections.
